@@ -26,3 +26,10 @@ module "network" {
     allowed_ssh_ip      = var.allowed_ssh_ip
     tags                = var.tags
 }
+
+module "storage" {
+    source               = "./modules/storage"
+    location             = azurerm_resource_group.rg.location
+    resource_group_name  = azurerm_resource_group.rg.name
+    tags                 = var.tags
+}
