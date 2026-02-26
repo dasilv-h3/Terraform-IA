@@ -33,3 +33,14 @@ module "storage" {
     resource_group_name  = azurerm_resource_group.rg.name
     tags                 = var.tags
 }
+
+module "compute" {
+    source              = "./modules/compute"
+    location            = azurerm_resource_group.rg.location
+    resource_group_name = azurerm_resource_group.rg.name
+    vm_size             = var.vm_size
+    admin_username      = var.admin_username
+    admin_password      = var.admin_password
+    nic_id              = module.network.nic_id
+    tags                = var.tags
+}
