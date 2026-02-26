@@ -23,3 +23,13 @@ output "images_container_name" {
 output "results_container_name" {
   value = azurerm_storage_container.results.name
 }
+
+output "primary_key" {
+  value     = azurerm_storage_account.storage_account.primary_access_key
+  sensitive = true
+}
+
+output "connection_string" {
+  value     = azurerm_storage_account.storage_account.primary_connection_string
+  sensitive = true
+}

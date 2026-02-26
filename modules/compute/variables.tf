@@ -1,7 +1,12 @@
 variable "location" {}
 variable "resource_group_name" {}
-variable "vm_size" {}
-variable "admin_username" {}
-variable "nic_id" {}
 variable "tags" {}
-variable "admin_password" {}
+
+variable "storage_account_name" {}
+variable "storage_account_access_key" {}
+variable "storage_connection_string" {}
+
+variable "app_insights_key" {}
+variable "keyvault_uri" {}
+variable "cognitive_endpoint" {}
+variable "cognitive_key" {}
