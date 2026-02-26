@@ -37,12 +37,6 @@ variable "subnet_cidr" {
   default     = "10.0.1.0/24"
 }
 
-variable "storage_account_name" {
-  type        = string
-  description = "Nom du storage account"
-  default     = "storage"
-}
-
 variable "tags" {
   type = map(string)
   default = {
