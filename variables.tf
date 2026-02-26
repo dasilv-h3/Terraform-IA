@@ -6,7 +6,7 @@ variable "subscription_id" {
 variable "location" {
   type = string
   description = "Localisation de notre VM"
-  default = "Italy North"
+  default = "Switzerland North"
 }
 
 variable "resource_group_name" {

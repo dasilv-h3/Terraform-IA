@@ -1,24 +1,28 @@
 terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=4.1.0"
+    required_providers {
+        azurerm = {
+            source  = "hashicorp/azurerm"
+            version = "4.61.0"
+        }
     }
-  }
 }
 
 provider "azurerm" {
-  resource_provider_registrations = "none"
-  subscription_id                 = var.subscription_id
-  features {}
+    features {}
+    subscription_id = var.subscription_id
+}
+
+resource "azurerm_resource_group" "rg" {
+    name     = var.resource_group_name
+    location = var.location
 }
 
 module "network" {
-  source              = "./modules/network"
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  vnet_cidr           = var.vnet_cidr
-  subnet_cidr         = var.subnet_cidr
-  allowed_ssh_ip      = var.allowed_ssh_ip
-  tags                = var.tags
+    source              = "./modules/network"
+    location            = azurerm_resource_group.rg.location
+    resource_group_name = azurerm_resource_group.rg.name
+    vnet_cidr           = var.vnet_cidr
+    subnet_cidr         = var.subnet_cidr
+    allowed_ssh_ip      = var.allowed_ssh_ip
+    tags                = var.tags
 }
