@@ -37,6 +37,17 @@ variable "subnet_cidr" {
   default     = "10.0.1.0/24"
 }
 
+variable "admin_username" {
+    type        = string
+    default     = "azureuser"
+}
+
+# Admin123!
+variable "admin_password" {
+    type        = string
+    sensitive   = true
+}
+
 variable "tags" {
   type = map(string)
   default = {
