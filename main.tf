@@ -55,3 +55,12 @@ module "monitoring" {
     admin_password                = var.admin_password
     tags                          = var.tags
 }
+
+module "cognitive_service" {
+    source               = "./modules/cognitive_service"
+    location             = azurerm_resource_group.rg.location
+    resource_group_name  = azurerm_resource_group.rg.name
+    cognitive_name       = "ocrproject-vision"
+    keyvault_id          = module.monitoring.keyvault_id
+    tags                 = var.tags
+}
