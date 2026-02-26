@@ -12,11 +12,13 @@ variable "location" {
 variable "resource_group_name" {
   type        = string
   description = "Nom de notre groupe de ressources"
+  default     = "rg"
 }
 
 variable "vm_size" {
   type        = string
   description = "Taille de la VM"
+  default     = "Standard_B2as_v2"
 }
 
 variable "allowed_ssh_ip" {
@@ -38,6 +40,7 @@ variable "subnet_cidr" {
 variable "storage_account_name" {
   type        = string
   description = "Nom du storage account"
+  default     = "storage"
 }
 
 variable "tags" {
