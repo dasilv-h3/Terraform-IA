@@ -5,6 +5,13 @@ terraform {
             version = "4.61.0"
         }
     }
+
+    backend "azurerm" {
+        resource_group_name   = "rg-tfstate"
+        storage_account_name  = "tfstateocrproj2026"
+        container_name        = "tfstate"
+        key                   = "terraform.tfstate"
+    }
 }
 
 provider "azurerm" {
@@ -13,7 +20,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-    name     = var.resource_group_name
+    name     = "rg-${terraform.workspace}"
     location = var.location
 }
 
@@ -50,7 +57,6 @@ module "monitoring" {
     location                      = azurerm_resource_group.rg.location
     resource_group_name           = azurerm_resource_group.rg.name
     app_insights_name             = "ai-ocrproject"
-    keyvault_name                 = "kv-ocrproject"
     storage_account_primary_key   = module.storage.primary_access_key
     admin_password                = var.admin_password
     tags                          = var.tags
@@ -63,4 +69,5 @@ module "cognitive_service" {
     cognitive_name       = "ocrproject-vision"
     keyvault_id          = module.monitoring.keyvault_id
     tags                 = var.tags
+    depends_on = [module.monitoring]
 }
