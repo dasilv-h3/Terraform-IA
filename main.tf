@@ -22,3 +22,11 @@ module "network" {
   allowed_ssh_ip      = var.allowed_ssh_ip
   tags                = var.tags
 }
+
+module "storage" {
+  source               = "./modules/storage"
+  location             = var.location
+  resource_group_name  = var.resource_group_name
+  storage_account_name = var.storage_account_name
+  tags                 = var.tags
+}
